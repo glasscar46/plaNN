@@ -9,4 +9,15 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="event">Event</string>
+    <string name="eventTime">%s - %s</string>
+    <string name="select">Select Date</string>
+    <string name="save_event">Save</string>
+    <string name="create_event">Create Event</string>
+    <string-array name="eventType">
+        <item>One time</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+    </string-array>
 </resources>
