@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.glasscar46.plann.databinding.EventListItemBinding
-import com.glasscar46.plann.databinding.FragmentFirstBinding
 
 
 class EventAdapter(context: Context, list: List<Event>) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
@@ -17,9 +15,9 @@ class EventAdapter(context: Context, list: List<Event>) : RecyclerView.Adapter<E
     private var eventList = list
     val context = context
     class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            val imageView = itemView.findViewById<ImageView>(R.id.event_icon)
-            val eventName = itemView.findViewById<TextView>(R.id.event_name)
-            val eventTime = itemView.findViewById<TextView>(R.id.event_time)
+            val imageView: ImageView = itemView.findViewById(R.id.event_icon)
+            val eventName: TextView = itemView.findViewById(R.id.event_name)
+            val eventTime: TextView = itemView.findViewById(R.id.event_time)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
@@ -30,14 +28,14 @@ class EventAdapter(context: Context, list: List<Event>) : RecyclerView.Adapter<E
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         with(holder){
-            eventName.text = eventList?.get(position)?.eventName.toString()
-            eventTime.text = context.getString(R.string.eventTime,eventList?.get(position)?.startTime,eventList?.get(position)?.endTime)
+            eventName.text = eventList[position].eventName
+            eventTime.text = context.getString(R.string.eventTime, eventList[position].startTime, eventList[position].endTime)
             imageView.setImageResource(R.drawable.ic_event_24)
         }
 
     }
 
     override fun getItemCount(): Int {
-        return eventList!!.size
+        return eventList.size
     }
 }

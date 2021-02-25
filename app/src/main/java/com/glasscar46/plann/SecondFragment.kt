@@ -33,6 +33,7 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+        binding.secondFragment = this
         viewModel.eventType.observe(viewLifecycleOwner, { if(it == "Daily"){
             binding.dateSelectButton.isClickable = false
         }
@@ -73,7 +74,7 @@ class SecondFragment : Fragment() {
                 time = getString(R.string.eventTime,hour.toString(),minute.toString())
             }
             val durationString = (dialog.findViewById<EditText>(R.id.duration_edit).text.toString())
-            var duration : Int
+            val duration : Int
            if(checked == R.id.minutes){
                 duration = durationString.toInt() * MINUTESPERHOUR
            }

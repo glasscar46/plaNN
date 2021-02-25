@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.LiveData
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.glasscar46.plann.databinding.FragmentFirstBinding
@@ -30,10 +28,10 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var  list : List<Event> = viewModel.eventList.value!!
+        val list : List<Event> = viewModel.eventList.value ?: listOf()
         binding.recyclerView.adapter = EventAdapter(requireContext(),list)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.fabButton.setOnClickListener{
+        binding.fab.setOnClickListener{
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
 

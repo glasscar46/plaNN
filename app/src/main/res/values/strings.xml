@@ -11,7 +11,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="event">Event</string>
     <string name="eventTime">%s - %s</string>
-    <string name="DayFormat">%i/%i/%i</string>
+    <string name="DayFormat">%d/%d/%d</string>
     <string name="select">Select Date</string>
     <string name="save_event">Save</string>
     <string name="create_event">Create Event</string>

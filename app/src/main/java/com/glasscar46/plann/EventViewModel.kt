@@ -1,16 +1,18 @@
 package com.glasscar46.plann
 
+import android.app.Application
 import android.content.Context
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.room.Room
 import java.time.Duration
 
-class EventViewModel(context: Context) : ViewModel() {
+class EventViewModel(application: Application) : AndroidViewModel(application) {
     private  var startTime = ""
     private  var duration = 0
-        private val  database = Room.databaseBuilder(context,EventDatabase::class.java,"EventDatabase").build()
+        private val  database = Room.databaseBuilder(getApplication<Application>().applicationContext,EventDatabase::class.java,"EventDatabase").build()
     private var _eventList = MutableLiveData<List<Event>>()
         val eventList : LiveData<List<Event>> = _eventList
     private  var _eventType = MutableLiveData("")
