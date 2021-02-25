@@ -7,6 +7,9 @@
         <variable
             name="viewModel"
             type="com.glasscar46.plann.EventViewModel" />
+        <variable
+            name="SecondFragment"
+            type="com.glasscar46.plann.SecondFragment" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -52,29 +55,21 @@
         android:layout_height="wrap_content"
         android:text="@string/select"
         android:textSize="12sp"
+        android:onClick="@{()->SecondFragment.showDateDialog()}"
         android:layout_margin="@dimen/margin_normal"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_text_field" />
-    <Button
-        android:id="@+id/startTime_select_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_normal"
-        android:text="@string/select"
-        android:textSize="12sp"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        app:layout_constraintStart_toEndOf="@id/date_select_button"
         app:layout_constraintTop_toBottomOf="@id/input_text_field" />
     <Button
         android:id="@+id/duration_select_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_normal"
-        android:text="@string/select"
+        android:text="@string/select_time"
+        android:onClick="@{()->SecondFragment.showTimeDialog()}"
         android:textSize="12sp"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        app:layout_constraintStart_toEndOf="@id/startTime_select_button"
+        app:layout_constraintStart_toEndOf="@id/date_select_button"
         app:layout_constraintTop_toBottomOf="@id/input_text_field" />
 
     <Spinner
@@ -90,7 +85,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/spinner"
         android:layout_marginTop="@dimen/margin_normal"
-        android:onClick="@{()->viewModel.saveEvent(eventNameEditText.text.toString())}"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:textStyle="bold"
         android:text="@string/save_event"/>

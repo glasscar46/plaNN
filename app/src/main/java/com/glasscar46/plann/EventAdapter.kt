@@ -6,13 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.glasscar46.plann.databinding.EventListItemBinding
 import com.glasscar46.plann.databinding.FragmentFirstBinding
 
-class EventAdapter(context: Context, viewModel: EventViewModel) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
+
+class EventAdapter(context: Context, list: List<Event>) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
     private  lateinit var binding: EventListItemBinding
-    var eventList = viewModel.eventList.value
+    private var eventList = list
     val context = context
     class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val imageView = itemView.findViewById<ImageView>(R.id.event_icon)
