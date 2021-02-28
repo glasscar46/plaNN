@@ -10,10 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.glasscar46.plann.databinding.EventListItemBinding
 
 
-class EventAdapter(context: Context, list: List<Event>) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
+class EventAdapter(private val context: Context, list: List<Event>) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
     private  lateinit var binding: EventListItemBinding
     private var eventList = list
-    val context = context
     class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val imageView: ImageView = itemView.findViewById(R.id.event_icon)
             val eventName: TextView = itemView.findViewById(R.id.event_name)

@@ -26,9 +26,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_normal"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="@dimen/margin_normal"
-                android:background="@drawable/input_vector"
+                app:srcCompat="@drawable/input_vector"
                 android:importantForAccessibility="no"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
