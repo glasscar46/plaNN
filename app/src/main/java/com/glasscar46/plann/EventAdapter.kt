@@ -10,9 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.glasscar46.plann.databinding.EventListItemBinding
 
 
-class EventAdapter(private val context: Context, list: List<Event>) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
+class EventAdapter(private val context: Context) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
     private  lateinit var binding: EventListItemBinding
-    private var eventList = list
+    private var eventList = listOf<Event>()
     class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val imageView: ImageView = itemView.findViewById(R.id.event_icon)
             val eventName: TextView = itemView.findViewById(R.id.event_name)
@@ -33,8 +33,13 @@ class EventAdapter(private val context: Context, list: List<Event>) : RecyclerVi
         }
 
     }
+    fun updateList(list : List<Event>){
+        eventList = list
+        notifyDataSetChanged()
+    }
 
     override fun getItemCount(): Int {
-        return eventList.size
+        return  eventList.size
     }
+
 }

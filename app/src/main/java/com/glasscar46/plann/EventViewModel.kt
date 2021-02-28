@@ -1,6 +1,7 @@
 package com.glasscar46.plann
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,21 +11,32 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
     private  var _startTime = MutableLiveData("")
         private val startTime : LiveData<String> = _startTime
     private  var duration = 0
-    public  var _eventTitle = MutableLiveData("")
-        val eventTitle : LiveData<String> = _eventTitle
-        private val  database = Room.databaseBuilder(getApplication<Application>().applicationContext,EventDatabase::class.java,"EventDatabase").build()
-    private var _eventList = MutableLiveData<List<Event>>()
-        val eventList : LiveData<List<Event>> = _eventList
+      var eventTitle = MutableLiveData("")
+         private val _eventTitle : LiveData<String> = eventTitle
+        private val  database = Room.databaseBuilder(getApplication<Application>()
+            .applicationContext,EventDatabase::class.java, "EventDatabase")
+            .fallbackToDestructiveMigration().allowMainThreadQueries()
+            .build()
+    //private var _eventList = MutableLiveData<List<Event>>()
+    lateinit var eventList : LiveData<List<Event>>
     private  var _eventType = MutableLiveData("")
         val eventType : LiveData<String> = _eventType
       private var _eventDay = MutableLiveData("Select day")
         val eventDay : LiveData<String> = _eventDay
     fun getAllEvents(){
-        _eventList = MutableLiveData(database.eventDao().getAllEvent())
+        eventList = database.eventDao().getAllEvent()
     }
     fun saveEvent() {
         if (verifyEventData()){
-            database.eventDao().addEvent(eventTitle.value!!,eventType.value!!,startTime.value!!,duration.toString())
+            database.eventDao().addEvent(_eventTitle.value!!,eventType.value!!,startTime.value!!,duration.toString())
+            _eventDay.value = "Select day"
+            _eventType.value = ""
+            duration = 0
+            _startTime.value = ""
+            Log.d("database","event created")
+        }
+        else{
+            Log.w("database","event not created ${_eventTitle.value!!},${eventType.value!!},${startTime.value!!},${duration}")
         }
     }
     fun deleteEvent(id:Int){

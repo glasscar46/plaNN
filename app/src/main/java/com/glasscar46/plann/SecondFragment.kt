@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.glasscar46.plann.databinding.FragmentSecondBinding
@@ -47,6 +48,11 @@ class SecondFragment : Fragment() {
             }
 
         }
+    }
+    fun saveEvent(){
+        viewModel.eventTitle.value = binding.editText.text.toString()
+        viewModel.saveEvent()
+        findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
     }
     fun showDateDialog(){
         val dialog = MaterialDialog(requireContext())
